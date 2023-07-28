@@ -8,7 +8,7 @@ import { commentOnPR } from './comment'
 import { POLICY_SEVERITY, SUCCESS } from './detect/exit-codes'
 import { TOOL_NAME, findOrDownloadDetect, runDetect } from './detect/detect-manager'
 import { isPullRequest } from './github/github-context'
-import { BLACKDUCK_API_TOKEN, BLACKDUCK_URL, DETECT_TRUST_CERT, DETECT_VERSION, FAIL_ON_ALL_POLICY_SEVERITIES, OUTPUT_PATH_OVERRIDE, SCAN_MODE } from './inputs'
+import { BLACKDUCK_API_TOKEN, BLACKDUCK_URL, DETECT_TRUST_CERT, DETECT_VERSION, DETECT_EXCLUDED_DIRECTORIES, FAIL_ON_ALL_POLICY_SEVERITIES, OUTPUT_PATH_OVERRIDE, SCAN_MODE } from './inputs'
 import { createRapidScanReportString } from './detect/reporting'
 import { uploadArtifact } from './github/upload-artifacts'
 import { CHECK_NAME } from './application-constants'
@@ -72,6 +72,10 @@ export async function runWithPolicyCheck(blackduckPolicyCheck: GitHubCheck): Pro
   }
 
   const detectArgs = [`--blackduck.trust.cert=${DETECT_TRUST_CERT}`, `--blackduck.url=${BLACKDUCK_URL}`, `--blackduck.api.token=${BLACKDUCK_API_TOKEN}`, `--detect.blackduck.scan.mode=${SCAN_MODE}`, `--detect.output.path=${outputPath}`, `--detect.scan.output.path=${outputPath}`]
+
+  if (DETECT_EXCLUDED_DIRECTORIES !== '') {
+    detectArgs.push(`--detect.excluded.directories=${DETECT_EXCLUDED_DIRECTORIES}`)
+  }
 
   const detectPath = await findOrDownloadDetect().catch(reason => {
     setFailed(`Could not download ${TOOL_NAME} ${DETECT_VERSION}: ${reason}`)

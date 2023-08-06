@@ -30,7 +30,7 @@ jobs:
       uses: synopsys-sig/detect-action@v0.3.0
       env:
         DETECT_PROJECT_NAME: "test"
-        DETECT_VERSION_NAME: "vtest"
+        DETECT_PROJECT_VERSION_NAME: "vtest"
       #   NODE_EXTRA_CA_CERTS: ${{ secrets.LOCAL_CA_CERT_PATH }}
       with:
           scan-mode: INTELLIGENT          

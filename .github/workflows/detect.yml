@@ -41,7 +41,7 @@ jobs:
         DETECT_BLACKDUCK_SIGNATURE_SCANNER_UPLOAD_SOURCE_MODE: true
         DETECT_EXCLUDED_DIRECTORIES: dist
         #DETECT_SOURCE_PATH: src
-        DETECT_BLACKDUCK_SIGNATURE_SCANNER_PATHS: "src","dist"
+        DETECT_BLACKDUCK_SIGNATURE_SCANNER_PATHS: '"src","dist"'
       with:
           scan-mode: INTELLIGENT          
           github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -31,10 +31,18 @@ jobs:
       env:
         DETECT_PROJECT_NAME: "test"
         DETECT_PROJECT_VERSION_NAME: "vtest"
-      #   NODE_EXTRA_CA_CERTS: ${{ secrets.LOCAL_CA_CERT_PATH }}
+        DETECT_CODE_LOCATION_NAME: test/vtest
+        #DETECT_SOURCE_PATH: src
+        DETECT_PROJECT_USER_GROUPS: OSSCA
+        DETECT_PROJECT_TAGS: vcb,mcr,raz,tcc
+        DETECT_BLACKDUCK_SIGNATURE_SCANNER_COPYRIGHT_SEARCH: true
+        DETECT_BLACKDUCK_SIGNATURE_SCANNER_LICENSE_SEARCH: true
+        DETECT_BLACKDUCK_SIGNATURE_SCANNER_UPLOAD_SOURCE_MODE: true
+        DETECT_PROJECT_GROUP_NAME: OSSCA
+        DETECT_EXCLUDED_DIRECTORIES: src
       with:
           scan-mode: INTELLIGENT          
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          detect-version: 7.9.0
+          detect-version: 8.9.0
           blackduck-url: ${{ secrets.BLACKDUCK_URL }}
           blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}

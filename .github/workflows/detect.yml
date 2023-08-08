@@ -1,9 +1,9 @@
 on:
   push:
 permissions:
-  actions: write
-  checks: write
-  pull-requests: write
+#  actions: write
+#  checks: write
+#  pull-requests: write
 jobs:
   security:
     runs-on: ubuntu-latest
@@ -19,13 +19,13 @@ jobs:
     #   run: chmod +x gradlew
     # - name: Build my project with Gradle
     #   run: ./gradlew build
-    - name: Create Black Duck Policy
-      uses: blackducksoftware/create-policy-action@v0.0.1
-      with:
-        blackduck-url: ${{ secrets.BLACKDUCK_URL }}
-        blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
-        policy-name: 'My Black Duck Policy For GitHub Actions'
-        no-fail-if-policy-exists: true
+#    - name: Create Black Duck Policy
+#      uses: blackducksoftware/create-policy-action@v0.0.1
+#      with:
+#        blackduck-url: ${{ secrets.BLACKDUCK_URL }}
+#        blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
+#        policy-name: 'My Black Duck Policy For GitHub Actions'
+#        no-fail-if-policy-exists: true
     - name: Run Synopsys Detect
       uses: synopsys-sig/detect-action@v0.3.4
       env:
@@ -33,9 +33,9 @@ jobs:
         DETECT_PROJECT_USER_GROUPS: OSSCA
         DETECT_PROJECT_GROUP_NAME: OSSCA
         DETECT_PROJECT_NAME: "test"
-        DETECT_PROJECT_VERSION_NAME: "vtest2"
+        DETECT_PROJECT_VERSION_NAME: "vtest3"
         DETECT_PROJECT_TAGS: vcb,mcr,raz,tcc
-        DETECT_CODE_LOCATION_NAME: test/vtest
+        DETECT_CODE_LOCATION_NAME: test/vtest3
         DETECT_BLACKDUCK_SIGNATURE_SCANNER_COPYRIGHT_SEARCH: true
         DETECT_BLACKDUCK_SIGNATURE_SCANNER_LICENSE_SEARCH: true
         DETECT_BLACKDUCK_SIGNATURE_SCANNER_UPLOAD_SOURCE_MODE: true

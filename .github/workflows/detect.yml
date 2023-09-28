@@ -27,7 +27,7 @@ jobs:
 #        policy-name: 'My Black Duck Policy For GitHub Actions'
 #        no-fail-if-policy-exists: true
     - name: Run Synopsys Detect
-      uses: synopsys-sig/synopsys-action@v1.2.0
+      uses: synopsys-sig/synopsys-action@v1.4.1
       env:
         DETECT_TOOLS: DETECTOR,SIGNATURE_SCAN
         DETECT_PROJECT_USER_GROUPS: OSSCA
